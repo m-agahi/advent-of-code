@@ -21,8 +21,6 @@ func main() {
 	var word string
 	var linenumber1, linenumber2 int = 0, 0
 	var numberofstacks int
-	// var sum1 int
-	// var sum2 int
 
 	fileScanner := bufio.NewScanner(readFile)
 	fileScanner.Split(bufio.ScanLines)
@@ -72,6 +70,17 @@ func main() {
 			}
 		}
 		stacks = append(stacks, [][]string{tempstack}...)
+	}
+	// repreated the process cause if added to the previous loop, it kept changing some of the stacks for unknown reasons.
+	for z := 0; z < numberofstacks; z++ {
+		tempstack := make([]string, 0)
+		for j := linenumber1 - 1; j >= 0; j-- {
+			index := (z * 4) + 1
+			boxname := string(tempstacks[j][index])
+			if boxname != " " {
+				tempstack = append(tempstack, boxname)
+			}
+		}
 		stacks2 = append(stacks2, [][]string{tempstack}...)
 	}
 
@@ -109,24 +118,27 @@ func main() {
 			stacks[to] = append(stacks[to], object)
 		}
 	}
+
 	fmt.Println("part 1 results")
 	for helia := 0; helia < numberofstacks; helia++ {
 		fmt.Printf("%s", stacks[helia][len(stacks[helia])-1])
 	}
-	fmt.Println("")
 
-	fmt.Println(stacks2)
-	// fmt.Println(instrunctions)
+	// fmt.Println("")
+	// for i := 0; i < len(stacks2); i++ {
+	// 	fmt.Println(stacks2[i])
+	// }
+	// fmt.Scanln()
 	for k := 0; k < len(instrunctions); k++ {
 		from := instrunctions[k][1] - 1
 		to := instrunctions[k][2] - 1
 
-		fmt.Println("instructions:", instrunctions[k])
-		fmt.Println("from:", stacks2[from])
-		fmt.Println("to:  ", stacks2[to])
+		// fmt.Println("instructions:", instrunctions[k])
+		// fmt.Println("from:", stacks2[from])
+		// fmt.Println("to:  ", stacks2[to])
 
 		object := stacks2[from][(len(stacks2[from]) - instrunctions[k][0]):]
-		fmt.Println("what:", object)
+		// fmt.Println("what:", object)
 
 		for o := 0; o < instrunctions[k][0]; o++ {
 			stacks2[to] = append(stacks2[to], string(object[o]))
@@ -134,13 +146,24 @@ func main() {
 
 		stacks2[from] = stacks2[from][:(len(stacks2[from]) - instrunctions[k][0])]
 
-		fmt.Println("from:", stacks2[from])
-		fmt.Println("to:  ", stacks2[to])
-		fmt.Println("")
+		// fmt.Println("from:", stacks2[from])
+		// fmt.Println("to:  ", stacks2[to])
+		// fmt.Println("")
+		// time.Sleep(2 * time.Second)
+		// fmt.Scanln()
+		// for line := 0; line < len(stacks2)+1; line++ {
+		// 	fmt.Printf("\x1b[2K")
+		// 	fmt.Printf("\033[1A")
+		// 	fmt.Printf("\x1b[2K")
+		// }
+		// fmt.Println(instrunctions[k])
+		// for i := 0; i < len(stacks2); i++ {
+		// 	fmt.Println(stacks2[i])
+		// }
 
 	}
-	fmt.Println(stacks2)
-	fmt.Println("part 2 results")
+	// fmt.Println(stacks2)
+	fmt.Println("\npart 2 results")
 	for dana := 0; dana < numberofstacks; dana++ {
 		fmt.Printf("%s", stacks2[dana][len(stacks2[dana])-1])
 	}
