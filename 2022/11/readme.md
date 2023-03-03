@@ -1,0 +1,4 @@
+# minor remarks 
+-   go is fucking incompetent when when it comes to types. you can easily fuck up an int64 by assigning a value greater than its capacity and it never throws and exception
+-   go lacks the while loop in a way that you cant check a condition first and if its true get to the loop. the while loop it has checks at the end of the block which is not ideal if you dont want the code to run even once if conditions are not met. also tricking for loop is not an option since it will at least run it once. tried to play with it. no success. 
+-   it is quiet possible that i am incompetent in golang since i have just started using it but compating it to other languages, it lacks some very basic functionalities
