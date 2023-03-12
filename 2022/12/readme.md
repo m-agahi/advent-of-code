@@ -1,0 +1,2 @@
+i guess the input has issues cause i cant find a way towards the end after jumping to "r". the "s" is completely isolated from "r"s thus no valid route to the E is visible. at least to me. the algorythm works on the test file though.
+i will change some of the heights and add a new input file to see if the algorithm works on it or not

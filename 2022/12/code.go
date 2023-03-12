@@ -25,6 +25,7 @@ type coordination struct {
 	shortest_path int
 	through       [2]int
 	deadend       bool
+	visited       bool
 }
 
 func check(e error) {
@@ -90,7 +91,7 @@ func object_creation() {
 				o.height_char = 'S'
 				o.deadend = true
 			} else if input[i][j] == 'E' {
-				o.height = 26
+				o.height = 25
 				o.destination = true
 				o.height_char = 'z'
 				o.shortest_path = len(input) * len(input[0])
@@ -128,12 +129,15 @@ func pathfinder(c *coordination) {
 			}
 			nb := find_object(c.coordination[0]+neighbors[coor][0], c.coordination[1]+neighbors[coor][1])
 			if (nb.coordination[0] != c.through[0]) || (nb.coordination[1] != c.through[1]) {
-				if nb.shortest_path+1 > c.shortest_path {
-					if (nb.height-c.height <= 1) && (nb.height-c.height >= 0) {
+				if (nb.height - c.height) <= 1 {
+					if nb.shortest_path > (c.shortest_path + 1) {
 						nb.shortest_path = c.shortest_path + 1
 						nb.through[0] = c.coordination[0]
 						nb.through[1] = c.coordination[1]
-						fmt.Println(string(nb.height_char), nb.coordination, nb.shortest_path)
+						if c.height > 18 {
+
+							fmt.Printf("\r%s %v %d          ", string(c.height_char), c.coordination, c.shortest_path)
+						}
 						pathfinder(nb)
 					}
 				}
