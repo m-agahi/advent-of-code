@@ -16,15 +16,15 @@ except FileNotFoundError:
 
 
 number_mapping = {
-    'one': '1',
-    'two': '2',
-    'three': '3',
+    'one': 'o1e',
+    'two': 't2o',
+    'three': '3e',
     'four': '4',
-    'five': '5',
+    'five': '5e',
     'six': '6',
-    'seven': '7',
-    'eight': '8',
-    'nine': '9'
+    'seven': '7n',
+    'eight': 'e8t',
+    'nine': 'n9e'
 }
 
 pattern = r'(?:one|two|three|four|five|six|seven|eight|nine)'
@@ -35,11 +35,12 @@ for line in input:
     count += 1
     ds = 0
     de = 0
-    matches = re.findall(pattern,line )
     text = line
-    for match in matches:
-        numeric_value = ''.join(number_mapping[word] for word in re.findall(r'\w+', match))
-        text = text.replace(match, numeric_value, 1)
+    for i in range(9):
+        matches = re.findall(pattern,text )
+        for match in matches:
+            numeric_value = ''.join(number_mapping[word] for word in re.findall(r'\w+', match))
+            text = text.replace(match, numeric_value, 1)
     digits_list = re.findall(pattern_digit, text)
     ds = int(digits_list[0])
     de = int(digits_list[-1])
