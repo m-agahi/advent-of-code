@@ -37,13 +37,9 @@ for line in input:
     de = 0
     matches = re.findall(pattern,line )
     text = line
-    digits=[]
-    for i in range(number_mapping):
-        pass
     for match in matches:
         numeric_value = ''.join(number_mapping[word] for word in re.findall(r'\w+', match))
-        digits.append(text.replace(match, numeric_value, -1))
-    print(digits)
+        text = text.replace(match, numeric_value, 1)
     digits_list = re.findall(pattern_digit, text)
     ds = int(digits_list[0])
     de = int(digits_list[-1])
