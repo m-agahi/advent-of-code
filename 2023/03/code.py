@@ -1,8 +1,6 @@
 import sys
 import re
 
-test_answer=4361
-
 if len(sys.argv) != 2:
     print("Usage: python script_name.py input_filename")
     sys.exit(1)
@@ -28,37 +26,49 @@ for line in input:
     fullnumlist.append(numlist)
 
 for line in range(len(fullnumlist)):
-    # print(input[line])
-    # print(line)
     for pair in fullnumlist[line]:
-        # print(pair)
         valid=False
         pairlen=len(pair[0])
-        # print(pair[1]+pairlen)
         try:
             if line>0:
                 if pair[1]>0:
-                    if input[line-1][pair[1]-1] != '.': valid = True
+                    if (not(input[line-1][pair[1]-1].isdigit()) and input[line-1][pair[1]-1] != '.'): valid = True 
                 if pair[1]+ pairlen < len(input[line]):
-                    if input[line-1][pair[1]+pairlen] != '.': valid = True
+                    if (not(input[line-1][pair[1]+pairlen].isdigit()) and input[line-1][pair[1]+pairlen] != '.'): valid = True 
                 for digit in range(pairlen):
-                    if input[line-1][pair[1]+digit] != '.': valid = True
+                    if (not(input[line-1][pair[1]+digit].isdigit()) and input[line-1][pair[1]+digit] != '.'): valid = True
             if line < len(fullnumlist)-1:
                 if pair[1]>0:
-                    if input[line+1][pair[1]-1] != '.': valid = True
+                    if (not(input[line+1][pair[1]-1].isdigit()) and input[line+1][pair[1]-1] != '.'): valid = True
                 if pair[1]+ pairlen < len(input[line]):
-                    if input[line+1][pair[1]+pairlen] != '.': valid = True
+                    if (not(input[line+1][pair[1]+pairlen].isdigit()) and input[line+1][pair[1]+pairlen] != '.'): valid = True
                 for digit in range(pairlen):
-                    if input[line+1][pair[1]+digit] != '.': valid = True
+                    if (not(input[line+1][pair[1]+digit].isdigit()) and input[line+1][pair[1]+digit] != '.'): valid = True
             if pair[1]>0:
-                if input[line][pair[1]-1] != '.': valid = True
+                if (not(input[line][pair[1]-1].isdigit()) and input[line][pair[1]-1] != '.'): valid = True
             if pair[1]+ pairlen < len(input[line]):
-                if input[line][pair[1]+pairlen] != '.': valid = True        
+                if (not(input[line][pair[1]+pairlen].isdigit()) and input[line][pair[1]+pairlen] != '.'): valid = True        
         except:
-            print(f"{line} {pair[1]} {len(input[line])}")
+            print(f"exception on line {line+1} : index {pair[1]}")
         if valid:
-            print(pair)
+            print(f"{pair[0]}",end=' ')
+            # print(f"{line+1} {pair[0]}")
             sum += int(pair[0])
-            
+    print("")
+print(f"part1: {sum}")
 
-print(sum)
+# asterisk = []
+# for line in range(len(input)):
+#     data = input[line]
+#     lendata = len(data)
+#     starlist=[]
+#     for index in range(lendata):
+#         if data[index] == "*": 
+#             temp=[line,index]
+#             starlist.append(temp)
+#     if len(starlist)>0 :
+#         asterisk.append(starlist)
+#             # print(f"{line} {index} is *")
+# for line in asterisk:
+#     print(line)
+
