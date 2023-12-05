@@ -58,5 +58,3 @@ for item in last:
     if item < minimun:
         minimun = item
 print(f"part 1: {minimun}")
-
-################# part 2
