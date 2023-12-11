@@ -26,7 +26,6 @@ def main():
 
     ans = part2(dataset)
     print(f"part 2: {ans}")
-    return 
 
 ############################################################
 def convert_input(dataset):
@@ -91,7 +90,6 @@ def expand (dataset,hs,vs,oldness):
             temp.append(dataset[i])
         else:
             temp.append(empty_row)
-            # temp.append(dataset[i])
 
     for i in range(len(temp)):
         t = []
@@ -101,9 +99,7 @@ def expand (dataset,hs,vs,oldness):
                 t.append(char)
             else:
                 t.append(oldness)
-                # t.append(char)
         expanded.append(t)
-    # for line in expanded: print(line)
     return expanded
 
 ############################################################
@@ -139,7 +135,6 @@ def calculate(dataset):
             for col in range(cols+coladd,cole+1):
                 sumc += abs(dataset[g1r][col])
             distance = sumc+sumr
-            # print(galaxies[i],galaxies[j],distance)
             summary += distance    
     return summary
 
@@ -151,7 +146,6 @@ def part2(dataset):
     hs,vs = detect_empty(dataset)
     expanded = expand(dataset,hs,vs,1000000)
     sum_distancd= calculate(expanded)
-    for line in expanded: print(line)
     return sum_distancd
 ############################################################
 main()
