@@ -113,9 +113,8 @@ def get_unique_lengths(dataset):
     unique_lengths = []
     summary = 0
     for line in dataset:
-        # Convert the list of lists into a set of tuples to remove duplicates
         unique_items = set(tuple(item) for item in line)
-        unique_lengths.append(len(unique_items))
+        unique_lengths.append(len(unique_items)) # just in case i need it later
         summary += len(unique_items)
 
     return summary
