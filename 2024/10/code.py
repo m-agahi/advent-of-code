@@ -51,7 +51,6 @@ def part1(dataset_p1):
         tempep = []
         tempep.append(trail_recursive(dataset, start_point[0], start_point[1],tempep))
         endpoint.append(tempep[:-1])
-    print(endpoint)
     
     summary = get_unique_lengths(endpoint)
     return summary, endpoint
@@ -107,7 +106,6 @@ def get_unique_lengths(dataset):
     summary = 0
     for line in dataset:
         unique_items = set(tuple(item) for item in line)
-        unique_lengths.append(len(unique_items)) # just in case i need it later
         summary += len(unique_items)
 
     return summary
