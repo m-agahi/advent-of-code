@@ -45,19 +45,13 @@ def convert_input(dataset):
 def part1(dataset_p1):
     dataset = dataset_p1
     summary = 0
-    # print(dataset)
-    # print(empty_p1)
     start_points = detect_start_points(dataset)
-    # print(start_points)
     endpoint = []
     for start_point in start_points:
         tempep = []
         tempep.append(trail_recursive(dataset, start_point[0], start_point[1],tempep))
-        # print(tempep)
         endpoint.append(tempep[:-1])
     print(endpoint)
-    # for line in endpoint:
-    #     print(line)
     
     summary = get_unique_lengths(endpoint)
     return summary, endpoint
@@ -81,7 +75,6 @@ def detect_start_points(dataset):
     return start_points
 ############################################################
 def trail_recursive(dataset, i, j, endpoint):
-    # print(i, j)
     if i < 0 or i >= len(dataset) or j < 0 or j >= len(dataset[0]):
         return ([-1, -1])
     if dataset[i][j] == 9:
